@@ -12,15 +12,13 @@ app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
 
-// [SESSION] lưu trên MongoDB Atlas
-app.use(require('./config/session'));
+// [SESSION]
 
 app.use((req, res, next) => {
   res.locals.student = student;
   next();
 });
 
-// [ROUTES]
 app.use('/', require('./routes/books'));
 
 app.listen(process.env.PORT || 3000, () => console.log('Server running'));
